@@ -5,6 +5,7 @@ import net.tralfamadore.rlgWeb.combat.Attack;
 import net.tralfamadore.rlgWeb.combat.AttackRange;
 import net.tralfamadore.rlgWeb.combat.DamageType;
 import net.tralfamadore.rlgWeb.combat.Effect;
+import net.tralfamadore.rlgWeb.entity.Creature;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,7 +63,22 @@ public class Sword implements Weapon {
 
             @Override
             public List<Effect> getEffects() {
-                Effect bleeding = creature -> creature.damage(new Die(Die.Type.D4).roll(), DamageType.BLEEDING);
+                Effect bleeding = new Effect() {
+                    @Override
+                    public String getName() {
+                        return "Bleeding";
+                    }
+
+                    @Override
+                    public void apply(Creature creature) {
+                        creature.damage(new Die(Die.Type.D4).roll(), DamageType.BLEEDING);
+                    }
+
+                    @Override
+                    public int getDuration() {
+                        return new Die(1, Die.Type.D4, 1).roll();
+                    }
+                };
                 return Collections.singletonList(bleeding);
             }
 

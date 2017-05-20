@@ -8,6 +8,7 @@ import net.tralfamadore.rlgWeb.entity.Creature;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * Class: BurningHands

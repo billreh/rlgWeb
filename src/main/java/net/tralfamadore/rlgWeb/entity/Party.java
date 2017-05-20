@@ -49,9 +49,10 @@ public class Party {
     public boolean isDead() {
         boolean dead = true;
         for (Creature member : members) {
-            System.out.println(member + ":" + member.getHealth());
-            if (!member.isDead())
+            if (!member.isDead()) {
                 dead = false;
+                break;
+            }
         }
 
         return dead;

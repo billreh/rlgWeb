@@ -17,6 +17,7 @@ public class Kobold extends CreatureBase implements Monster {
         super(stats, hitDice);
         this.setLevel(level);
         this.hitDice = hitDice;
+        this.setHealth(hitDice.roll());
     }
 
     @Override
