@@ -19,12 +19,12 @@ import java.util.List;
  */
 public class CreatureBase implements Creature {
     private Stat[] stats;
-    private int level;
-    private int health;
-    private long experience;
-    private List<Effect> effects;
-    private Party.Position position = Party.Position.FRONT;
-    private Weapon weapon;
+    protected int level;
+    protected int health;
+    protected long experience;
+    protected List<Effect> effects;
+    protected Party.Position position = Party.Position.FRONT;
+    protected Weapon weapon;
 
     public CreatureBase() {
         this.level = 1;

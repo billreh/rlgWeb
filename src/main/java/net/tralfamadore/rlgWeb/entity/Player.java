@@ -1,6 +1,7 @@
 package net.tralfamadore.rlgWeb.entity;
 
 
+import net.tralfamadore.rlgWeb.item.Weapon;
 import net.tralfamadore.rlgWeb.stat.Stat;
 
 /**
@@ -11,5 +12,9 @@ public class Player extends CreatureBase {
     public Player(Stat[] stats) {
         super(stats);
         setHealth(getStat(Stat.StatType.VIT).getValue() / 2);
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 }

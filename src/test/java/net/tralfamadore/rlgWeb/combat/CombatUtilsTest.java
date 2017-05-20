@@ -43,9 +43,15 @@ public class CombatUtilsTest {
     public void testGetMeleeTarget() throws Exception {
         Party party = getParty();
         party.getMembers().forEach(m -> m.setPosition(Party.Position.BACK));
-        party.getMembers().iterator().next().setPosition(Party.Position.FRONT);
-        Assert.assertEquals(party.getMembers().iterator().next(),
-                CombatUtils.getMeleeTargets(party.getMembers()).iterator().next());
+        party.getMembers().get(0).setPosition(Party.Position.FRONT);
+        Assert.assertEquals(party.getMembers().get(0), CombatUtils.getMeleeTargets(party.getMembers()).get(0));
+    }
+
+    @Test
+    public void testGetRandomTarget() throws Exception {
+        Party party = getParty();
+        Creature target = CombatUtils.getRandomTarget(party.getMembers());
+        Assert.assertTrue(party.getMembers().contains(target));
     }
 
     private Party getParty() {

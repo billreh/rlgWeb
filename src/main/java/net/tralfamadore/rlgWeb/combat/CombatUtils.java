@@ -16,9 +16,9 @@ import java.util.stream.Collectors;
 public class CombatUtils {
     private static final Random rand = new Random();
 
-    public static Set<Creature> getMeleeTargets(Collection<Creature> creatures) {
-        Set<Creature> targets =
-                creatures.stream().filter(t -> t.getPosition() == Party.Position.FRONT).collect(Collectors.toSet());
+    public static List<Creature> getMeleeTargets(Collection<Creature> creatures) {
+        List<Creature> targets =
+                creatures.stream().filter(t -> t.getPosition() == Party.Position.FRONT).collect(Collectors.toList());
         if(targets.isEmpty())
             targets.addAll(creatures);
         return targets;

@@ -2,19 +2,19 @@ package net.tralfamadore.rlgWeb.entity;
 
 import java.awt.*;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class: Party
  * Created by billreh on 4/8/17.
  */
 public class Party {
-    private Set<Creature> members;
+    private List<Creature> members;
     private Point location;
 
     public Party() {
-        members = new HashSet<>();
+        members = new ArrayList<>();
         location = new Point(0, 0);
     }
 
@@ -34,8 +34,8 @@ public class Party {
         members.remove(member);
     }
 
-    public Set<Creature> getMembers() {
-        return Collections.unmodifiableSet(members);
+    public List<Creature> getMembers() {
+        return Collections.unmodifiableList(members);
     }
 
     public Point getLocation() {
