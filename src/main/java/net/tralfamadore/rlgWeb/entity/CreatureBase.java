@@ -6,12 +6,15 @@ import net.tralfamadore.rlgWeb.combat.Attack;
 import net.tralfamadore.rlgWeb.combat.DamageType;
 import net.tralfamadore.rlgWeb.combat.Effect;
 import net.tralfamadore.rlgWeb.combat.Unarmed;
+import net.tralfamadore.rlgWeb.item.Item;
+import net.tralfamadore.rlgWeb.item.ItemType;
 import net.tralfamadore.rlgWeb.item.Weapon;
 import net.tralfamadore.rlgWeb.stat.Stat;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class: CreatureBase
@@ -25,22 +28,27 @@ public class CreatureBase implements Creature {
     protected List<Effect> effects;
     protected Party.Position position = Party.Position.FRONT;
     protected Weapon weapon;
+    private List<Item> items;
+    private int maxHealth;
 
     public CreatureBase() {
         this.level = 1;
         this.effects = new ArrayList<>();
         this.weapon = new Unarmed(this);
+        this.items = new ArrayList<>();
     }
 
     public CreatureBase(Stat[] stats) {
         this();
         this.stats = stats;
         this.health = getStat(Stat.StatType.VIT).getValue() / 10;
+        this.maxHealth = health;
     }
 
     public CreatureBase(Stat[]stats, Die hitDie) {
         this(stats);
         this.health = hitDie.roll();
+        this.maxHealth = health;
     }
 
     @Override
@@ -56,6 +64,11 @@ public class CreatureBase implements Creature {
     @Override
     public int getHealth() {
         return health;
+    }
+
+    @Override
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
     public void setHealth(int health) {
@@ -134,6 +147,16 @@ public class CreatureBase implements Creature {
     @Override
     public boolean isDead() {
         return health <= 0;
+    }
+
+    @Override
+    public List<Item> getItems() {
+        return items;
+    }
+
+    @Override
+    public List<Item> getItems(ItemType itemType) {
+        return items.stream().filter(item-> item.getItemType() == itemType).collect(Collectors.toList());
     }
 
     public void setStats(Stat[] stats) {

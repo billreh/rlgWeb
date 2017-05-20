@@ -4,6 +4,8 @@ package net.tralfamadore.rlgWeb.entity;
 import net.tralfamadore.rlgWeb.combat.Attack;
 import net.tralfamadore.rlgWeb.combat.DamageType;
 import net.tralfamadore.rlgWeb.combat.Effect;
+import net.tralfamadore.rlgWeb.item.Item;
+import net.tralfamadore.rlgWeb.item.ItemType;
 import net.tralfamadore.rlgWeb.item.Weapon;
 import net.tralfamadore.rlgWeb.stat.Stat;
 
@@ -19,6 +21,8 @@ public interface Creature {
     int getLevel();
 
     int getHealth();
+
+    int getMaxHealth();
 
     void damage(int health, DamageType damageType);
 
@@ -45,4 +49,8 @@ public interface Creature {
     List<Attack> getAttacks();
 
     boolean isDead();
+
+    List<Item> getItems();
+
+    List<Item> getItems(ItemType itemType);
 }

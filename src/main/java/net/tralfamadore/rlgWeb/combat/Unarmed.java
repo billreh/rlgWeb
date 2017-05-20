@@ -1,6 +1,7 @@
 package net.tralfamadore.rlgWeb.combat;
 
 import net.tralfamadore.rlgWeb.entity.Creature;
+import net.tralfamadore.rlgWeb.item.ItemType;
 import net.tralfamadore.rlgWeb.item.Weapon;
 
 import java.util.Collections;
@@ -20,5 +21,10 @@ public class Unarmed implements Weapon {
     @Override
     public List<Attack> getAttacks() {
         return Collections.singletonList(new UnarmedAttack(attacker));
+    }
+
+    @Override
+    public ItemType getItemType() {
+        return ItemType.WEAPON;
     }
 }

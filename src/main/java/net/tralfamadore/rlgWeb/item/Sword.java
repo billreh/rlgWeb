@@ -100,4 +100,9 @@ public class Sword implements Weapon {
     public List<Attack> getAttacks() {
         return Collections.unmodifiableList(attacks);
     }
+
+    @Override
+    public ItemType getItemType() {
+        return ItemType.WEAPON;
+    }
 }

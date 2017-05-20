@@ -18,6 +18,7 @@ import java.util.List;
 public class Katana extends Sword {
     public Katana(Creature attacker) {
         super(attacker);
+        attacks.clear();
         attacks.add(new Attack() {
             @Override
             public String getName() {
@@ -73,20 +74,18 @@ public class Katana extends Sword {
                     @Override
                     public void apply(Creature creature) {
                         if(!applied)
-                            attacker.getStat(Stat.StatType.EVD).
-                                    setModifier(attacker.getStat(Stat.StatType.EVD).getValue() + 5);
+                            attacker.getStat(Stat.StatType.EVD).addToModifier(5);
                         applied = true;
                     }
 
                     @Override
                     public int getDuration() {
-                        return 0;
+                        return new Die(Die.Type.D4).roll();
                     }
 
                     @Override
                     public void remove(Creature creature) {
-                        attacker.getStat(Stat.StatType.EVD).
-                                setModifier(attacker.getStat(Stat.StatType.EVD).getValue() - 5);
+                        attacker.getStat(Stat.StatType.EVD).addToModifier(-5);
                     }
                 };
                 return Collections.singletonList(dodge);

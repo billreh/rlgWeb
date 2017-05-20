@@ -47,6 +47,10 @@ public class Stat {
         this.modifier = modifier;
     }
 
+    public void addToModifier(int amount) {
+        this.modifier += amount;
+    }
+
     @Override
     public String toString() {
         return statType.longName() + ": " + getValue();

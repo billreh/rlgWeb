@@ -17,15 +17,16 @@ public class CombatUtils {
     private static final Random rand = new Random();
 
     public static List<Creature> getMeleeTargets(Collection<Creature> creatures) {
-        List<Creature> targets =
-                creatures.stream().filter(t -> t.getPosition() == Party.Position.FRONT).collect(Collectors.toList());
+        List<Creature> targets = creatures.stream().filter(t -> t.getPosition() == Party.Position.FRONT)
+                .filter(t -> !t.isDead()).collect(Collectors.toList());
         if(targets.isEmpty())
             targets.addAll(creatures);
         return targets;
     }
 
     public static Creature getRandomTarget(Collection<Creature> creatures) {
-        return creatures.toArray(new Creature[0])[rand.nextInt(creatures.size())];
+        return creatures.stream().filter(t -> !t.isDead()).collect(Collectors.toList())
+                .toArray(new Creature[0])[rand.nextInt(creatures.size())];
     }
 
     public static List<Creature> turnOrder(Party party, Party party2) {
@@ -38,5 +39,12 @@ public class CombatUtils {
                         ? 0 : 1));
         int i = 3;
         return creatures;
+    }
+
+    public static Attack getRandomAttack(List<Attack> attacks) {
+        if(attacks == null || attacks.isEmpty())
+            return null;
+        return attacks.get(rand.nextInt(attacks.size()));
+
     }
 }
