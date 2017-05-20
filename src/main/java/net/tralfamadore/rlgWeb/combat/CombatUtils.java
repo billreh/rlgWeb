@@ -36,6 +36,7 @@ public class CombatUtils {
                 creature.getStat(Stat.StatType.SPD).getValue() > creature2.getStat(Stat.StatType.SPD).getValue()) ? -1 :
                 ((creature.getStat(Stat.StatType.SPD).getValue() == creature2.getStat(Stat.StatType.SPD).getValue())
                         ? 0 : 1));
+        int i = 3;
         return creatures;
     }
 }

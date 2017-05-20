@@ -7,6 +7,7 @@ import net.tralfamadore.rlgWeb.entity.Player;
 import net.tralfamadore.rlgWeb.stat.Stat;
 import net.tralfamadore.rlgWeb.stat.StatFactory;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,23 +24,13 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfig.class })
 public class CombatUtilsTest {
-    private static Party party;
-    private static Party party2;
     @Inject
     private StatFactory statFactory;
 
-    @BeforeClass
-    public void setUp() {
-        party = new Party(new Player(statFactory.getRandomStats()),
-                new Player(statFactory.getRandomStats()),
-                new Player(statFactory.getRandomStats()));
-        party2 = new Party(new Player(statFactory.getRandomStats()),
-                new Player(statFactory.getRandomStats()),
-                new Player(statFactory.getRandomStats()));
-    }
-
     @Test
     public void testTurnOrder() throws Exception {
+        Party party = getParty();
+        Party party2 = getParty();
         List<Creature> turnOrder = CombatUtils.turnOrder(party, party2);
         int[] lastSpd = {100};
         turnOrder.stream().map(creature -> creature.getStat(Stat.StatType.SPD).getValue()).forEach( spd ->
@@ -48,9 +39,16 @@ public class CombatUtilsTest {
 
     @Test
     public void testGetMeleeTarget() throws Exception {
+        Party party = getParty();
         party.getMembers().forEach(m -> m.setPosition(Party.Position.BACK));
         party.getMembers().iterator().next().setPosition(Party.Position.FRONT);
         Assert.assertEquals(party.getMembers().iterator().next(),
                 CombatUtils.getMeleeTargets(party.getMembers()).iterator().next());
+    }
+
+    private Party getParty() {
+        return new Party(new Player(statFactory.getRandomStats()),
+                new Player(statFactory.getRandomStats()),
+                new Player(statFactory.getRandomStats()));
     }
 }

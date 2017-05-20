@@ -20,4 +20,11 @@ public class GameContextImpl implements GameContext {
     public void setParty(Party party) {
         this.party = party;
     }
+
+    @Override
+    public String toString() {
+        return "GameContextImpl{" +
+                "party=" + party +
+                '}';
+    }
 }
