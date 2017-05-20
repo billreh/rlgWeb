@@ -6,6 +6,7 @@ import net.tralfamadore.rlgWeb.combat.AttackRange;
 import net.tralfamadore.rlgWeb.combat.DamageType;
 import net.tralfamadore.rlgWeb.combat.Effect;
 import net.tralfamadore.rlgWeb.entity.Creature;
+import net.tralfamadore.rlgWeb.stat.Stat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +19,7 @@ import java.util.List;
 public class Sword implements Weapon {
     protected List<Attack> attacks = new ArrayList<>();
 
-    public Sword() {
+    public Sword(Creature attacker) {
         attacks.add(new Attack() {
             @Override
             public String getName() {
@@ -42,7 +43,8 @@ public class Sword implements Weapon {
 
             @Override
             public int getDamage() {
-                return new Die(Die.Type.D10).roll();
+                return new Die(attacker.getLevel(), Die.Type.D10,
+                        attacker.getStat(Stat.StatType.STR).getValue() / 10).roll();
             }
         });
         attacks.add(new Attack() {
@@ -78,13 +80,18 @@ public class Sword implements Weapon {
                     public int getDuration() {
                         return new Die(1, Die.Type.D4, 1).roll();
                     }
+
+                    @Override
+                    public void remove(Creature creature) {
+                    }
                 };
                 return Collections.singletonList(bleeding);
             }
 
             @Override
             public int getDamage() {
-                return new Die(Die.Type.D8).roll();
+                return new Die(attacker.getLevel(), Die.Type.D8,
+                        attacker.getStat(Stat.StatType.STR).getValue() / 10).roll();
             }
         });
     }

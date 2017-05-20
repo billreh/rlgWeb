@@ -11,4 +11,5 @@ public interface Effect {
     String getName();
     void apply(Creature creature);
     int getDuration();
+    void remove(Creature creature);
 }
