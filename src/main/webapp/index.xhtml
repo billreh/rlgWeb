@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head/>
+<h:body>
+    <h:form id="theForm">
+        <p:growl id="messages" showDetail="true"/>
+        <p:outputPanel rendered="#{!drugDealer.turnOver}">
+            Welcome to <h:outputText value="#{drugDealer.borough}"/><br/>
+            Turn: <h:outputText value="#{drugDealer.turn}"/><br/>
+
+            <c:forEach var="borough" items="#{drugDealer.boroughs}">
+                <p:commandButton value="Go to #{borough}" action="#{drugDealer.gotoBorough(borough)}" update="theForm"/>
+            </c:forEach>
+            <h:outputText value="#{drugDealer.clams}"/> Clams
+            <p:dataTable var="drug" value="#{drugDealer.drugs}" rowIndexVar="i">
+                <f:facet name="header">
+                    Street Drugs
+                </f:facet>
+                <p:column headerText="Name">
+                    <h:outputText value="#{drug.name}"/>
+                </p:column>
+                <p:column headerText="Price">
+                    <h:outputText value="#{drug.price}"/>
+                </p:column>
+                <p:column headerText="Amount">
+                    <p:spinner value="#{drugDealer.amounts[i]}"/>
+                </p:column>
+                <p:column headerText="Buy / Sell">
+                    <p:commandButton value="Buy" action="#{drugDealer.buyDrugs(i)}" update="theForm"/>
+                    <p:commandButton value="Sell" action="#{drugDealer.sellDrugs(i)}" update="theForm"/>
+                </p:column>
+            </p:dataTable>
+            <p:dataTable var="drug" value="#{drugDealer.drugsOnHand}" rowIndexVar="i">
+                <f:facet name="header">
+                    The Stash
+                </f:facet>
+                <p:column headerText="Name">
+                    <h:outputText value="#{drug}"/>
+                </p:column>
+                <p:column headerText="Amount">
+                    <h:outputText value="#{drugDealer.theStash[drug]}"/>
+                </p:column>
+            </p:dataTable>
+        </p:outputPanel>
+        <p:outputPanel rendered="#{drugDealer.turnOver}">
+            You made <h:outputText value="#{drugDealer.clams}"/> clams!
+            <p:commandButton value="Start again" action="#{drugDealer.restart}" update="theForm"/>
+        </p:outputPanel>
+    </h:form>
+</h:body>
+</html>
