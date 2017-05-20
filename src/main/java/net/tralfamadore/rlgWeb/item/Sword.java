@@ -1,6 +1,6 @@
 package net.tralfamadore.rlgWeb.item;
 
-import net.tralfamadore.rlgWeb.Die;
+import net.tralfamadore.base.Die;
 import net.tralfamadore.rlgWeb.combat.Attack;
 import net.tralfamadore.rlgWeb.combat.AttackRange;
 import net.tralfamadore.rlgWeb.combat.DamageType;

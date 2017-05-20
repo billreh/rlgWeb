@@ -1,6 +1,6 @@
 package net.tralfamadore.rlgWeb.combat;
 
-import net.tralfamadore.rlgWeb.Die;
+import net.tralfamadore.base.Die;
 import net.tralfamadore.rlgWeb.entity.Creature;
 import net.tralfamadore.rlgWeb.stat.Stat;
 

@@ -1,4 +1,4 @@
-package net.tralfamadore.rlgWeb;
+package net.tralfamadore.rlgWeb.combat;
 
 import net.tralfamadore.rlgWeb.entity.Party;
 

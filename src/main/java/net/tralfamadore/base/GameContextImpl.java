@@ -1,4 +1,4 @@
-package net.tralfamadore.rlgWeb;
+package net.tralfamadore.base;
 
 import net.tralfamadore.rlgWeb.entity.Party;
 import org.springframework.stereotype.Component;

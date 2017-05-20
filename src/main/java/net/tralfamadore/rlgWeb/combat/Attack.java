@@ -1,7 +1,5 @@
 package net.tralfamadore.rlgWeb.combat;
 
-import net.tralfamadore.rlgWeb.Die;
-
 import java.util.List;
 
 /**

@@ -1,7 +1,7 @@
 package net.tralfamadore.rlgWeb.entity;
 
 
-import net.tralfamadore.rlgWeb.Die;
+import net.tralfamadore.base.Die;
 
 /**
  * Class: Monster

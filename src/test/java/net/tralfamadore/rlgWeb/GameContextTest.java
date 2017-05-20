@@ -1,10 +1,10 @@
 package net.tralfamadore.rlgWeb;
 
+import net.tralfamadore.base.GameContext;
 import net.tralfamadore.rlgWeb.config.AppConfig;
 import net.tralfamadore.rlgWeb.entity.Party;
 import net.tralfamadore.rlgWeb.entity.Player;
 import net.tralfamadore.rlgWeb.stat.StatFactory;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

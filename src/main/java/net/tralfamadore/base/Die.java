@@ -1,4 +1,4 @@
-package net.tralfamadore.rlgWeb;
+package net.tralfamadore.base;
 
 import java.util.Random;
 

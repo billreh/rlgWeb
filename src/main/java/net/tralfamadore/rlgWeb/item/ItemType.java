@@ -11,5 +11,6 @@ public enum ItemType {
     WEAPON,
     RING,
     AMULET,
-    CONSUMABLE
+    CONSUMABLE,
+    BOOK
 }
