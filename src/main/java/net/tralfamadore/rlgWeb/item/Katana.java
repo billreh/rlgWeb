@@ -45,5 +45,57 @@ public class Katana extends Sword {
                         attacker.getStat(Stat.StatType.STR).getValue() / 10).roll();
             }
         });
+        attacks.add(new Attack() {
+            @Override
+            public String getName() {
+                return "Parry";
+            }
+
+            @Override
+            public AttackRange getRange() {
+                return AttackRange.MELEE;
+            }
+
+            @Override
+            public DamageType getDamageType() {
+                return DamageType.PHYSICAL;
+            }
+
+            @Override
+            public List<Effect> getEffects() {
+                Effect dodge = new Effect() {
+                    boolean applied = false;
+                    @Override
+                    public String getName() {
+                        return "Improved dodge";
+                    }
+
+                    @Override
+                    public void apply(Creature creature) {
+                        if(!applied)
+                            attacker.getStat(Stat.StatType.EVD).
+                                    setModifier(attacker.getStat(Stat.StatType.EVD).getValue() + 5);
+                        applied = true;
+                    }
+
+                    @Override
+                    public int getDuration() {
+                        return 0;
+                    }
+
+                    @Override
+                    public void remove(Creature creature) {
+                        attacker.getStat(Stat.StatType.EVD).
+                                setModifier(attacker.getStat(Stat.StatType.EVD).getValue() - 5);
+                    }
+                };
+                return Collections.singletonList(dodge);
+            }
+
+            @Override
+            public int getDamage() {
+                return new Die(1, Die.Type.D4, attacker.getStat(Stat.StatType.STR).getValue() / 10).roll();
+            }
+        });
     }
 }

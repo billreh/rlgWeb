@@ -20,7 +20,7 @@ public class StatFactory {
         this.applicationProperties = ApplicationProperties.getInstance();
     }
 
-    public static Stat[] getRandomStats() {
+    public Stat[] getRandomStats() {
         Stat[] stats = new Stat[Stat.StatType.values().length];
 
         for(Stat.StatType statType : Stat.StatType.values())
