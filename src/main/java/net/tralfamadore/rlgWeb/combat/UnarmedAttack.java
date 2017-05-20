@@ -2,6 +2,7 @@ package net.tralfamadore.rlgWeb.combat;
 
 import net.tralfamadore.rlgWeb.Die;
 import net.tralfamadore.rlgWeb.entity.Creature;
+import net.tralfamadore.rlgWeb.stat.Stat;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +40,6 @@ public class UnarmedAttack implements Attack {
 
     @Override
     public int getDamage() {
-        return new Die(Die.Type.D4).roll();
+        return new Die(1, Die.Type.D4, attacker.getStat(Stat.StatType.STR).getValue() / 10).roll();
     }
 }
