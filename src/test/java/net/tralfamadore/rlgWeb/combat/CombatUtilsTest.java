@@ -33,8 +33,10 @@ public class CombatUtilsTest {
         Party party2 = getParty();
         List<Creature> turnOrder = CombatUtils.turnOrder(party, party2);
         int[] lastSpd = {100};
-        turnOrder.stream().map(creature -> creature.getStat(Stat.StatType.SPD).getValue()).forEach( spd ->
-                Assert.assertTrue(spd <= lastSpd[0]));
+        turnOrder.stream().map(creature -> creature.getStat(Stat.StatType.SPD).getValue()).forEach( spd -> {
+            Assert.assertTrue(spd <= lastSpd[0]);
+            lastSpd[0] = spd;
+        });
     }
 
     @Test
